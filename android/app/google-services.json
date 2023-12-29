@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "608194468221",
+    "project_id": "cycle-8e30e",
+    "storage_bucket": "cycle-8e30e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608194468221:android:3fbe61659cc0b806ff9414",
+        "android_client_info": {
+          "package_name": "com.oceansoft.cycle"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmpv7nUukZSB8mxm1S3LRy-X5X7mnTbdo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

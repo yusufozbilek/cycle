@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBAgUaH_Q9Hg1ZL4qsRE_oXsrk5tHDb-Is</string>
+	<key>GCM_SENDER_ID</key>
+	<string>608194468221</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.oceansoft.cycle</string>
+	<key>PROJECT_ID</key>
+	<string>cycle-8e30e</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cycle-8e30e.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:608194468221:ios:f62703c33b2d25e4ff9414</string>
+</dict>
+</plist>
