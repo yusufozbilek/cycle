@@ -8,6 +8,10 @@ class HomePageBottomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
+      shadowColor: Colors.transparent,
+      surfaceTintColor: Colors.red,
+      elevation: 15,
+
       color: Colors.green,
       shape: const CircularNotchedRectangle(),
       notchMargin: 5,
@@ -17,7 +21,7 @@ class HomePageBottomAppBar extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(onPressed: (){context.read<HomePageBottomAppBarNavigationCubit>().changeCurrentPage("Home");},icon: const Icon(Icons.home,color: Colors.white,)),
+            IconButton(onPressed: (){context.read<HomePageBottomAppBarNavigationCubit>().changeCurrentPage("Info");},icon: const Icon(Icons.home,color: Colors.white,)),
             IconButton(onPressed: (){context.read<HomePageBottomAppBarNavigationCubit>().changeCurrentPage("Stats");},icon: const Icon(Icons.bar_chart,color: Colors.white,)),
           ],
         ),

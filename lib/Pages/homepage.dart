@@ -24,15 +24,24 @@ class _HomePageState extends State<HomePage> {
         BlocProvider(create: (context) => HomePageFirebaseCubit())
       ],
       child: Scaffold(
-          extendBody: false,
+          extendBody: true,
+          backgroundColor: Colors.white,
           extendBodyBehindAppBar: false,
           appBar: const HomePageTopAppBar(),
-          floatingActionButton: FloatingActionButton(
-              onPressed: () {Navigator.pushNamed(context, '/GoogleMapsPage');},
-              child: const Icon(
-                Icons.recycling,
-                color: Colors.white,
-              )),
+          floatingActionButton: BlocBuilder<HomePageBottomAppBarNavigationCubit,String>(
+            builder: (context,pageName) {
+              return FloatingActionButton(
+                  onPressed: () {
+                    context
+                        .read<HomePageBottomAppBarNavigationCubit>()
+                        .changeCurrentPage("GoogleMaps");
+                  },
+                  child: const Icon(
+                    Icons.recycling,
+                    color: Colors.white,
+                  ));
+            }
+          ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           body: const HomePageBody(),

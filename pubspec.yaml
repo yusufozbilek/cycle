@@ -43,6 +43,7 @@ dependencies:
   firebase_ui_firestore: ^1.5.15
   google_maps_flutter: ^2.5.0
   geolocator: ^10.1.0
+  flutter_polyline_points: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -96,3 +97,6 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  assets:
+    - assets/recycle_location.png
+

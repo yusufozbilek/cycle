@@ -15,6 +15,9 @@ class _CycleState extends State<Cycle> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowMaterialGrid: false,
+      debugShowCheckedModeBanner: false,
+
       routes: {
         '/SplashScreen' : (context) => const SplashScreen(),
         '/HomePage' : (context) => const HomePage(),
