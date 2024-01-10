@@ -14,10 +14,10 @@ class _HomePageTopAppBarState extends State<HomePageTopAppBar> {
   Widget build(BuildContext context) {
     return AppBar(
       title: const Text("Home",style: TextStyle(color:Colors.white,fontSize: 28),),
-      backgroundColor: Colors.green,
+      backgroundColor: Colors.greenAccent,/*TODO change Color*/
       actions: [
         IconButton(onPressed: (){}, icon: const Icon(Icons.search, color: Colors.white)),
-        IconButton(onPressed: (){}, icon: const Icon(Icons.more_vert, color: Colors.white)),
+        IconButton(onPressed: (){Navigator.pushNamed(context, '/Settings');}, icon: const Icon(Icons.settings, color: Colors.white)),
       ],
     );
   }

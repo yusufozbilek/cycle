@@ -12,7 +12,7 @@ class HomePageBottomAppBar extends StatelessWidget {
       surfaceTintColor: Colors.red,
       elevation: 15,
 
-      color: Colors.green,
+      color: Colors.greenAccent,
       shape: const CircularNotchedRectangle(),
       notchMargin: 5,
       child: Padding(

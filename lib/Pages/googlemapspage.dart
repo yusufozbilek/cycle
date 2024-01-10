@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class GoogleMapsPage extends StatefulWidget {
   const GoogleMapsPage({super.key});
@@ -17,7 +18,7 @@ class GoogleMapsPage extends StatefulWidget {
 
 class _GoogleMapsPageState extends State<GoogleMapsPage> {
   Set<Marker> markers = {};
-  Set<Polyline> polylines = {};
+  Set<Polyline> polyLines = {};
   late GoogleMapController _controller;
   late LatLng selectedLatLng;
   String routeDistance = "~";
@@ -32,6 +33,7 @@ class _GoogleMapsPageState extends State<GoogleMapsPage> {
         BlocProvider(create: (context) => CurrentPositionCubit()),
       ],
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         extendBody: true,
         body: SafeArea(
             child: FutureBuilder(
@@ -44,7 +46,7 @@ class _GoogleMapsPageState extends State<GoogleMapsPage> {
                     );
                   }
                   if (!snapshot.hasData) {
-                    return const Center(child: Text("No Data Available!"));
+                    return const Center(child: Row(mainAxisAlignment: MainAxisAlignment.center,children: [Text("Google Maps Loading"),CircularProgressIndicator()],));
                   }
                   if (snapshot.hasData) {
                     var locationList = snapshot.data!.docs;
@@ -79,7 +81,7 @@ class _GoogleMapsPageState extends State<GoogleMapsPage> {
                                   return Container(
                                     width: double.maxFinite,
                                     height: MediaQuery.of(context).size.height /6.5,
-                                    constraints: BoxConstraints(minHeight: 125),
+                                    constraints: const BoxConstraints(minHeight: 143),
                                     decoration: const BoxDecoration(
                                         color: Colors.green,
                                         boxShadow: null,
@@ -137,6 +139,7 @@ class _GoogleMapsPageState extends State<GoogleMapsPage> {
                                                 bottom: 8),
                                             child: FilledButton(
                                                 onPressed: () {
+                                                  requestPermissionL();
                                                   lastClickedPoint =
                                                       document.id;
                                                   _getPolyline(
@@ -194,7 +197,7 @@ class _GoogleMapsPageState extends State<GoogleMapsPage> {
                           initialCameraPosition: const CameraPosition(
                               target: LatLng(41, 28), zoom: 8),
                           markers: markers,
-                          polylines: polylines,
+                          polylines: polyLines,
                           myLocationEnabled: true,
                           myLocationButtonEnabled: true,
                           zoomControlsEnabled: false,
@@ -214,7 +217,7 @@ class _GoogleMapsPageState extends State<GoogleMapsPage> {
     List<LatLng> alternativePolylineCoordinates = [];
     Position currentLocation = await Geolocator.getCurrentPosition();
     PolylinePoints polylinePoints = PolylinePoints();
-    polylines.clear();
+    polyLines.clear();
     /*PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
       "AIzaSyBAgUaH_Q9Hg1ZL4qsRE_oXsrk5tHDb-Is",
       PointLatLng(currentLocation.latitude, currentLocation.longitude),
@@ -266,10 +269,24 @@ class _GoogleMapsPageState extends State<GoogleMapsPage> {
       width: 3,
     );
     setState(() {
-      polylines.add(polyline);
-      polylines.add(alternativePolyline);
+      polyLines.add(polyline);
+      polyLines.add(alternativePolyline);
       routeDistance = result.first.distance!;
       routeDuration = result.first.duration!;
     });
+  }
+  Future<void> requestPermissionL() async {
+    final permission = Permission.location;
+
+    if (await permission.isDenied) {
+      var result = await permission.request();
+      if (result.isGranted) {
+        Text("izin verildi");
+      } else if (result.isDenied) {
+        Text("reddedildi");
+      } else if (result.isPermanentlyDenied) {
+        Text("BAMBAM");
+      }
+    }
   }
 }

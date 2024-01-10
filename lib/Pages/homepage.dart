@@ -2,7 +2,6 @@ import 'package:cycle/Bloc/HomePage_cubits/homepage_bottom_app_bar_navigation_cu
 import 'package:cycle/Bloc/HomePage_cubits/homepage_homescreen_firestore_cubit.dart';
 import 'package:cycle/CustomWidgets/HomePageWidgets/homepage_body.dart';
 import 'package:cycle/CustomWidgets/HomePageWidgets/homepage_bottom_app_bar.dart';
-import 'package:cycle/CustomWidgets/HomePageWidgets/homepage_bottom_nav_bar.dart';
 import 'package:cycle/CustomWidgets/HomePageWidgets/homepage_top_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,10 +20,11 @@ class _HomePageState extends State<HomePage> {
       providers: [
         BlocProvider(
             create: (context) => HomePageBottomAppBarNavigationCubit()),
-        BlocProvider(create: (context) => HomePageFirebaseCubit())
+        /*BlocProvider(create: (context) => HomePageFirebaseCubit())*/
       ],
       child: Scaffold(
-          extendBody: true,
+        resizeToAvoidBottomInset: true,
+          extendBody: false,
           backgroundColor: Colors.white,
           extendBodyBehindAppBar: false,
           appBar: const HomePageTopAppBar(),
