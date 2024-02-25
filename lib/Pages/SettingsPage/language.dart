@@ -13,8 +13,8 @@ class Language extends StatefulWidget {
 class _LanguageState extends State<Language> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      backgroundColor: Color.fromRGBO(229, 88, 66, 1.000),
+    return Scaffold(
+      backgroundColor: const Color.fromRGBO(229, 88, 66, 1.000),
       body: SafeArea(
         child:SingleChildScrollView(
           child: Column(
@@ -28,8 +28,8 @@ class _LanguageState extends State<Language> {
             MaterialPageRoute(builder: (context) => const SettingPage()));
       },
 
-               child:   Padding(
-                 padding: const EdgeInsets.only(top: 20),
+               child: const Padding(
+                 padding: EdgeInsets.only(top: 20),
                  child: Icon(
                       Icons.chevron_left_outlined,
                       size: 30,
@@ -39,7 +39,7 @@ class _LanguageState extends State<Language> {
               ),
               Column(
                 children:[ Image.asset("assets/resting.gif"),
-                  Text("In development feature",style: TextStyle(height: 5,fontSize:30),),
+                  const Text("In development feature",style: TextStyle(height: 5,fontSize:30),),
 
 
               ])

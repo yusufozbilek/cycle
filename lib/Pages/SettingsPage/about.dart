@@ -1,4 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:path_provider/path_provider.dart';
+
 //author kadir han yartaşı
 class About extends StatefulWidget {
   const About({super.key});
@@ -8,40 +14,94 @@ class About extends StatefulWidget {
 }
 
 class _AboutState extends State<About> {
+  String aboutText = "";
+  @override
+  void initState() {
+    super.initState();
+    _loadAboutText();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
-    /*biz kimiz?
-Hello!
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: IconButton(
+                          onPressed: () {
+                            Navigator.popAndPushNamed(context, '/HomePage');
+                          },
+                          icon: const Icon(Icons.arrow_back_ios_new))),
+                  const Text(
+                    "Settings",
+                    style: TextStyle(
+                      fontSize: 45,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+              Expanded(child: Markdown(data: aboutText, styleSheet: MarkdownStyleSheet(
+                h1: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 36),
+                h2: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 28),
+                h3: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 24),
+                h4: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 20),
+                p: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18),
+                em: const TextStyle(
+                    color: Colors.black),
+                a: const TextStyle(
+                    color: Colors.black),
+                blockquote: const TextStyle(
+                    color: Colors.black),
+                del: const TextStyle(
+                    color: Colors.black),
+                strong: const TextStyle(
+                    color: Colors.black),
+                tableBody: const TextStyle(
+                    color: Colors.black),
+                tableHead: const TextStyle(
+                    color: Colors.black),
+                listBullet: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18),
+              ),))
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
-It's time to take action for preserving our environment and contributing to a sustainable future!
-Our "Cycle" app provides you with a comprehensive guide on finding recycling containers in your area,
- learning how to manage waste correctly, and adopting a sustainable lifestyle.
-Biz bu uygulamayı 3 arkadaş olarak geliştirdik.
-işte bizler hakkında bilgi:
--KADİR HAN YARTAŞI
-Hello!I my name is Kadir Han YARTAŞI.
-I am currently a student in the Computer Engineering at Namık Kemal University.
+  Future<void> _loadAboutText() async {
+    String aboutTextContent;
 
-I have been an active team member at GDCG NKU for 2 years.
-Together with my university colleagues,
- we have developed an application aimed at sustainability. I hope you like it!
+    try {
+      aboutTextContent = await rootBundle.loadString('assets/texts/about.md');
+    } catch (e) {
+      aboutTextContent = 'File reading error: $e';
+    }
 
-Yusuf ÖZBİLEK
-Hello! My name is Yusuf Özbilek
-I am also a student in the Computer Engineering Department at Namık Kemal University.
-
-I have been an active member at NKU GDSC for 2 years, and I have been an active team member for 6 months.
-
-With the application we have developed, we aim to increase awareness about recycling worldwide and encourage people to recycle more for the sake of our future
-
-    I hope you like this application.
-    Sertec YILDIRIM
-    Hello!My name is Sertac YILDIRIM
-    I am also a student in the Computer Engineering Department at Namık Kemal University.
-    I have been an active member of NKU GDG for 2 years, and I have been an active team member of NKU GDSC for 6 months.
-    With the application we have developed, we hope that we can achieve our goals.
-    .*/
-
+    if (mounted) {
+      setState(() {
+        aboutText = aboutTextContent;
+      });
+    }
   }
 }

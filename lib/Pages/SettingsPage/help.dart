@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 class Help extends StatefulWidget {
   const Help({super.key});
@@ -8,27 +10,94 @@ class Help extends StatefulWidget {
 }
 
 class _HelpState extends State<Help> {
+  String helpText = "";
+  @override
+  void initState() {
+    super.initState();
+    _loadHelpText();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
-/*
-    uygulamanın amacı?
-    Environmentally Friendly Map: Our application shows you the nearest recycling points on an interactive map,
-    allowing you to properly dispose of waste. It also provides the opportunity to explore recycling facilities and environmental events.
-    Waste Management Education: Knowing where each type of waste should go can be complex. Our application assists you with interactive tutorials and tips on how to correctly classify waste.
-    Instant Notifications: Would you like to receive instant information about the maintenance status of recycling facilities,
-    special events, and environmental notifications? By granting notification permission, you can follow personalized updates without missing out.
-    Why do we need location permission?
-    Answer: Location permission helps our application determine the nearest recycling container to you.
-    This permission allows us to identify your location on the map and show you recycling points in your vicinity.
-    Consequently, we can provide personalized recommendations for correct waste disposal, aiding you in reducing your environmental impact.
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: IconButton(
+                          onPressed: () {
+                            Navigator.popAndPushNamed(context, '/HomePage');
+                          },
+                          icon: const Icon(Icons.arrow_back_ios_new))),
+                  const Text(
+                    "Settings",
+                    style: TextStyle(
+                      fontSize: 45,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+              Expanded(child: Markdown(data: helpText, styleSheet: MarkdownStyleSheet(
+                h1: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 36),
+                h2: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 28),
+                h3: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 24),
+                h4: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 20),
+                p: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18),
+                em: const TextStyle(
+                    color: Colors.black),
+                a: const TextStyle(
+                    color: Colors.black),
+                blockquote: const TextStyle(
+                    color: Colors.black),
+                del: const TextStyle(
+                    color: Colors.black),
+                strong: const TextStyle(
+                    color: Colors.black),
+                tableBody: const TextStyle(
+                    color: Colors.black),
+                tableHead: const TextStyle(
+                    color: Colors.black),
+                listBullet: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18),
+              ),))
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
+  Future<void> _loadHelpText() async {
+    String helpTextContent;
 
-    Answer: Notification permission allows us to instantly convey updated information and important notifications to you.
-    Through our application, we can provide you with information about the maintenance status of recycling containers, s
-    pecial events, discounts, or environmentally friendly initiatives. Additionally, we can interact with you to ensure you do not miss updates and assist you in approaching your
-    environmental responsibilities more consciously.
-        */
+    try {
+      helpTextContent = await rootBundle.loadString('assets/texts/help.md');
+    } catch (e) {
+      helpTextContent = 'File reading error: $e';
+    }
 
+    if (mounted) {
+      setState(() {
+        helpText = helpTextContent;
+      });
+    }
   }
 }

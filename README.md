@@ -1,16 +1,30 @@
-# cycle
+# Cycle
 
-Recycle for better world
+## Overview
 
-## Getting Started
+Cycle app is an open-source application designed to facilitate recycling. The goal of the application is to make recycling more accessible and reduce environmental pollution.
 
-This project is a starting point for a Flutter application.
+## Technologies Used
 
-A few resources to get you started if this is your first Flutter project:
+Cycle is still under development and currently available only on the Android platform. We plan to expand to iOS and the web platform in the future. In developing the project, we used Flutter and Dart as we aimed to create a cross-platform application. Additionally, we utilized Google Cloud, Firebase, and the Google Maps API for the backend.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Downloading and Installing Cycle
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+**There are two main methods to install Cycle.**
+
+### 1. Downloading the source files and building
+
+To do this, the first step is to download the source files from Github and then build them using either Android Studio or Flutter directly.
+
+### 2. Downloading the Apk File from Our Website
+
+You can simply download and install the application's apk file from [here](http://cycleapp.space/).
+
+## Our Team
+
+[Yusuf Özbilek](https://github.com/yusufozbilek) - Developer
+
+[Kadir Han Yartaşı](https://github.com/kadirhanyartasi) - Developer
+
+[Sertaç Yıldırım](https://github.com/Sertac1911u) - Designer
+
